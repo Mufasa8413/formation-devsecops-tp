@@ -13,10 +13,10 @@ pipeline {
     stage('Docker Build and Push') {
       steps {
         withCredentials([string(credentialsId: 'passwordhubmohamed', variable: 'DOCKER_HUB_PASSWORD')]) {
-          sh 'sudo docker login -u mufasa8413 -p $DOCKER_HUB_PASSWORD'
+          sh 'sudo docker login -u Mufasa8413 -p $DOCKER_HUB_PASSWORD'
           sh 'printenv'
-          sh 'sudo docker build -t mufasa8413/devops-app:""$GIT_COMMIT"" .'
-          sh 'sudo docker push mufasa8413/devops-app:""$GIT_COMMIT""'
+          sh 'sudo docker build -t Mufasa8413/devops-app:""$GIT_COMMIT"" .'
+          sh 'sudo docker push Mufasa8413/devops-app:""$GIT_COMMIT""'
         }
       }
     }
@@ -25,7 +25,7 @@ pipeline {
     stage('Deployment Kubernetes  ') {
       steps {
         withKubeConfig([credentialsId: 'configtssraks']) {
-          sh "sed -i 's#replace#mufasa8413/devops-app:${GIT_COMMIT}#g' k8s_deployment_service.yaml"
+          sh "sed -i 's#replace#Mufasa8413/devops-app:${GIT_COMMIT}#g' k8s_deployment_service.yaml"
           sh 'kubectl apply -f k8s_deployment_service.yaml'
         }
       }
