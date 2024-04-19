@@ -12,7 +12,7 @@ pipeline {
     //--------------------------
     stage('Docker Build and Push') {
       steps {
-        withCredentials([string(credentialsId: 'passwordhubmohamed', variable: 'DOCKER_HUB_PASSWORD')]) {
+        withCredentials([string(credentialsId: 'docker-hub-password-mohamed', variable: 'DOCKER_HUB_PASSWORD')]) {
           sh 'sudo docker login -u mufasa8413 -p $DOCKER_HUB_PASSWORD'
           sh 'printenv'
           sh 'sudo docker build -t mufasa8413/devops-app:""$GIT_COMMIT"" .'
